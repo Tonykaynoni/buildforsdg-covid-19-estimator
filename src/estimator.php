@@ -13,24 +13,7 @@ function covid19ImpactEstimator($data)
   
   $timeToElapse = $info['timeToElapse'];
   $periodType = $info['periodType'];
-
-  if($periodType == 'days'){
-    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-  }
-
-  if($periodType == 'weeks'){
-    $timeToElapse = $timeToElapse * 7;
-    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-  }
-
-  if($periodType == 'months'){
-    $timeToElapse = $timeToElapse * 30;
-    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
-  }
-
+  checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact);
 
   //Challenge 2
   $impact->severeCasesByRequestedTime = round((15 / 100) * $impact->infectionsByRequestedTime);
@@ -51,7 +34,14 @@ function covid19ImpactEstimator($data)
   
   $avgDailyIncomeInUSD = $info['region']['avgDailyIncomeInUSD'];
   $avgDailyIncomePopulation = $info['region']['avgDailyIncomePopulation'];
+  
+  if($periodType == 'weeks'){
+    $timeToElapse = $timeToElapse * 7;
+  }
 
+  if($periodType == 'months'){
+    $timeToElapse = $timeToElapse * 30;
+  }
   $impact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse);
   $severeImpact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD ) / $timeToElapse);
 
@@ -60,6 +50,26 @@ function covid19ImpactEstimator($data)
 	$response['severeImpact'] = cvf_convert_object_to_array($severeImpact);
   //$json_response = json_encode($response);
   return $response;
+}
+
+function checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact){
+  if($periodType == 'days'){
+    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+  }
+
+  if($periodType == 'weeks'){
+    $timeToElapse = $timeToElapse * 7;
+    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+  }
+
+  if($periodType == 'months'){
+    $timeToElapse = $timeToElapse * 30;
+    $impact->infectionsByRequestedTime = round($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = round($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
+  }
+
 }
 
 function array_to_xml( $data, &$xml_data ) {
