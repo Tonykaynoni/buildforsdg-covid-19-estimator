@@ -16,21 +16,21 @@ function covid19ImpactEstimator($data)
   checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact);
 
   //Challenge 2
-  $impact->severeCasesByRequestedTime = (15 / 100) * $impact->infectionsByRequestedTime;
-  $severeImpact->severeCasesByRequestedTime = (15 / 100) * $severeImpact->infectionsByRequestedTime;
+  $impact->severeCasesByRequestedTime = floor((15 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->severeCasesByRequestedTime = floor((15 / 100) * $severeImpact->infectionsByRequestedTime);
 
   $totalHospitalBeds = $info['totalHospitalBeds'];
-  $availableBedSpace = (35 / 100) * $totalHospitalBeds;
+  $availableBedSpace = floor((35 / 100) * $totalHospitalBeds);
 
-  $impact->hospitalBedsByRequestedTime = $availableBedSpace - $impact->severeCasesByRequestedTime;
-  $severeImpact->hospitalBedsByRequestedTime = $availableBedSpace - $severeImpact->severeCasesByRequestedTime;
+  $impact->hospitalBedsByRequestedTime = floor($availableBedSpace - $impact->severeCasesByRequestedTime);
+  $severeImpact->hospitalBedsByRequestedTime = floor($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
 
   //Challenge 3
-  $impact->casesForICUByRequestedTime = (5 / 100) * $impact->infectionsByRequestedTime;
-  $severeImpact->casesForICUByRequestedTime = (5 / 100) * $severeImpact->infectionsByRequestedTime;
+  $impact->casesForICUByRequestedTime = floor((5 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->casesForICUByRequestedTime = floor((5 / 100) * $severeImpact->infectionsByRequestedTime);
   
-  $impact->casesForVentilatorsByRequestedTime = (2 / 100) * $impact->infectionsByRequestedTime;
-  $severeImpact->casesForVentilatorsByRequestedTime = (2 / 100) * $severeImpact->infectionsByRequestedTime;
+  $impact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $severeImpact->infectionsByRequestedTime);
   
   $avgDailyIncomeInUSD = $info['region']['avgDailyIncomeInUSD'];
   $avgDailyIncomePopulation = $info['region']['avgDailyIncomePopulation'];
@@ -47,20 +47,20 @@ function covid19ImpactEstimator($data)
 
 function checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact){
   if($periodType == 'days'){
-    $impact->infectionsByRequestedTime = $impact->currentlyInfected * pow(2,($timeToElapse / 3));
-    $severeImpact->infectionsByRequestedTime = $severeImpact->currentlyInfected * pow(2,($timeToElapse / 3));
+    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = floor($severeImpact->currentlyInfected * pow(2,($timeToElapse / 3)));
   }
 
   if($periodType == 'weeks'){
     $timeToElapse = $timeToElapse * 7;
-    $impact->infectionsByRequestedTime = $impact->currentlyInfected * pow(2,($timeToElapse / 3));
-    $severeImpact->infectionsByRequestedTime = $severeImpact->currentlyInfected * pow(2,($timeToElapse / 3));
+    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = floor($severeImpact->currentlyInfected * pow(2,($timeToElapse / 3)));
   }
 
   if($periodType == 'months'){
     $timeToElapse = $timeToElapse * 30;
-    $impact->infectionsByRequestedTime = $impact->currentlyInfected * pow(2,($timeToElapse / 3));
-    $severeImpact->infectionsByRequestedTime = $severeImpact->currentlyInfected * pow(2,($timeToElapse / 3));
+    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,($timeToElapse / 3)));
+    $severeImpact->infectionsByRequestedTime = floor($severeImpact->currentlyInfected * pow(2,($timeToElapse / 3)));
   }
 
 }
