@@ -53,13 +53,13 @@ function checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact){
 
   if($periodType == 'weeks'){
     $timeToElapse = $timeToElapse * 7;
-    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,($timeToElapse / 3)));
+    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
     $severeImpact->infectionsByRequestedTime = floor($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
   }
 
   if($periodType == 'months'){
     $timeToElapse = $timeToElapse * 30;
-    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,($timeToElapse / 3)));
+    $impact->infectionsByRequestedTime = floor($impact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
     $severeImpact->infectionsByRequestedTime = floor($severeImpact->currentlyInfected * pow(2,floor($timeToElapse / 3)));
   }
 
