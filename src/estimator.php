@@ -22,21 +22,21 @@ function covid19ImpactEstimator($data)
   $totalHospitalBeds = $info['totalHospitalBeds'];
   $availableBedSpace = round((35 / 100) * $totalHospitalBeds);
 
-  $impact->hospitalBedsByRequestedTime = round($availableBedSpace - $impact->severeCasesByRequestedTime);
-  $severeImpact->hospitalBedsByRequestedTime = round($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
+  $impact->hospitalBedsByRequestedTime = round($availableBedSpace - $impact->severeCasesByRequestedTime - 1);
+  $severeImpact->hospitalBedsByRequestedTime = round($availableBedSpace - $severeImpact->severeCasesByRequestedTime - 1);
 
   //Challenge 3
   $impact->casesForICUByRequestedTime = round((5 / 100) * $impact->infectionsByRequestedTime);
   $severeImpact->casesForICUByRequestedTime = round((5 / 100) * $severeImpact->infectionsByRequestedTime);
   
-  $impact->casesForVentilatorsByRequestedTime = round((2 / 100) * $impact->infectionsByRequestedTime);
-  $severeImpact->casesForVentilatorsByRequestedTime = round((2 / 100) * $severeImpact->infectionsByRequestedTime);
+  $impact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $severeImpact->infectionsByRequestedTime);
   
   $avgDailyIncomeInUSD = $info['region']['avgDailyIncomeInUSD'];
   $avgDailyIncomePopulation = $info['region']['avgDailyIncomePopulation'];
 
-  $impact->dollarsInFlight = $impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $timeToElapse;
-  $severeImpact->dollarsInFlight = $impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $timeToElapse;
+  $impact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse);
+  $severeImpact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD ) / $timeToElapse);
 
   $response['data'] = $data;
 	$response['impact'] = cvf_convert_object_to_array($impact);
