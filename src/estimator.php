@@ -43,7 +43,7 @@ function covid19ImpactEstimator($data)
     $timeToElapse = $timeToElapse * 30;
   }
   $impact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse);
-  $severeImpact->dollarsInFlight = floor(($impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD ) / $timeToElapse);
+  $severeImpact->dollarsInFlight = floor(($severeImpact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD ) / $timeToElapse);
 
   $response['data'] = $data;
 	$response['impact'] = cvf_convert_object_to_array($impact);
