@@ -16,11 +16,11 @@ function covid19ImpactEstimator($data)
   checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact);
 
   //Challenge 2
-  $impact->severeCasesByRequestedTime = round((15 / 100) * $impact->infectionsByRequestedTime);
-  $severeImpact->severeCasesByRequestedTime = round((15 / 100) * $severeImpact->infectionsByRequestedTime);
+  $impact->severeCasesByRequestedTime = floor((15 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->severeCasesByRequestedTime = floor((15 / 100) * $severeImpact->infectionsByRequestedTime);
 
   $totalHospitalBeds = $info['totalHospitalBeds'];
-  $availableBedSpace = round((35 / 100) * $totalHospitalBeds);
+  $availableBedSpace = floor((35 / 100) * $totalHospitalBeds);
 
   $impact->hospitalBedsByRequestedTime = $availableBedSpace - $impact->severeCasesByRequestedTime;
   $severeImpact->hospitalBedsByRequestedTime = $availableBedSpace - $severeImpact->severeCasesByRequestedTime;
