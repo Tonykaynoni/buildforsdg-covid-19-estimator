@@ -39,9 +39,9 @@ function covid19ImpactEstimator($data)
   $severeImpact->dollarsInFlight = $impact->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $timeToElapse;
 
   $response['data'] = $data;
-	$response['impact'] = $impact;
-	$response['severeImpact'] = $severeImpact;
-  
+	$response['impact'] = cvf_convert_object_to_array($impact);
+	$response['severeImpact'] = cvf_convert_object_to_array($severeImpact);
+  //$json_response = json_encode($response);
   return $response;
 }
 
@@ -78,5 +78,20 @@ function array_to_xml( $data, &$xml_data ) {
       }
    }
 }
+
+function cvf_convert_object_to_array($data) {
+
+  if (is_object($data)) {
+      $data = get_object_vars($data);
+  }
+
+  if (is_array($data)) {
+      return array_map(__FUNCTION__, $data);
+  }
+  else {
+      return $data;
+  }
+}
+
 
 
