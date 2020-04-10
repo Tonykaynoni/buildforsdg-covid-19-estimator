@@ -41,8 +41,8 @@ function covid19ImpactEstimator($data)
   $response['data'] = $data;
 	$response['impact'] = $impact;
 	$response['severeImpact'] = $severeImpact;
-  $json_response = json_encode($response);
-  return $json_response;
+  
+  return $response;
 }
 
 function checkPeriodType($periodType,$timeToElapse,$impact,$severeImpact){
