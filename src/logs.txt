@@ -1,0 +1,4 @@
+1586536871		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/		 done in 0.074731111526489 seconds
+1586536881		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/xml		 done in 0.060401916503906 seconds
+1586536921		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		 done in 0.035146951675415 seconds
+1586537245		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/xml		 done in 0.065829992294312 seconds

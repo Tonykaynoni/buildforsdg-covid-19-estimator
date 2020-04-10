@@ -1,7 +1,7 @@
 <?php
 function covid19ImpactEstimator($data)
 {
-  $info = json_decode($data,true);
+  $info = $data;
   $impactStructure = array('currentlyInfected' => 0,'infectionsByRequestedTime' => 0,'severeCasesByRequestedTime' => 0,'hospitalBedsByRequestedTime' => 0,'casesForICUByRequestedTime' => 0,'casesForVentilatorsByRequestedTime' => 0,'dollarsInFlight' => 0);
   $severeImpactStructure = array('currentlyInfected' => 0,'infectionsByRequestedTime' => 0,'severeCasesByRequestedTime' => 0,'hospitalBedsByRequestedTime' => 0,'casesForICUByRequestedTime' => 0,'casesForVentilatorsByRequestedTime' => 0,'dollarsInFlight' => 0);
   
