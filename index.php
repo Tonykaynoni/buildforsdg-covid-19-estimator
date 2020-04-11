@@ -9,7 +9,7 @@ require __DIR__ .'/vendor/autoload.php';
 $router = new \Bramus\Router\Router();
 $router->post('/api/v1/on-covid-19', function() {
   $json = file_get_contents('php://input');
-  $json_response = json_encode(covid19ImpactEstimator($json));
+  $json_response = json_encode(covid19ImpactEstimator(json_decode($json)));
   echo $json_response;
 });
 
@@ -23,10 +23,10 @@ $router->post('/api/v1/on-covid-19/{returnType}', function($returnType) {
     $json = file_get_contents('php://input');
     if($returnType == 'xml'){
         $xml = new SimpleXMLElement('<?xml version="1.0"?><data></data>');
-        array_to_xml(covid19ImpactEstimator($json), $xml);
+        array_to_xml(covid19ImpactEstimator(json_decode($json)), $xml);
         echo $xml->asXML();
     }else if($returnType == 'json'){
-        $json_response = json_encode(covid19ImpactEstimator($json));
+        $json_response = json_encode(covid19ImpactEstimator(json_decode($json)));
         echo $json_response;
     }else{
         header("HTTP/1.0 404 Not Found");
