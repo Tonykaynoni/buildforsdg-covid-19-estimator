@@ -4,3 +4,7 @@
 1586602517		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		5.4941177368164 ms
 1586602620		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		15.7790184021 ms
 1586602869		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		23.511171340942 ms
+1586607134		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		26.876926422119 ms
+1586607156		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		5.1491260528564 ms
+1586607182		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		6.3469409942627 ms
+1586607219		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		4.2769908905029 ms
