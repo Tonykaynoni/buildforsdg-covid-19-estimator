@@ -22,9 +22,19 @@ function covid19ImpactEstimator($data)
   $totalHospitalBeds = $info['totalHospitalBeds'];
   $availableBedSpace = floor((35 / 100) *  $totalHospitalBeds);
 
-  $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
-  $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
 
+  $impacthospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
+  $severeImpacthospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
+
+  if($impacthospitalBedsByRequestedTime > 0){
+    $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
+    $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
+  }else{
+    $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime;
+    $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime;
+ 
+  }
+  
   //Challenge 3
   $impact->casesForICUByRequestedTime = (int) (5 / 100) * $impact->infectionsByRequestedTime;
   $severeImpact->casesForICUByRequestedTime = (int) (5 / 100) * $severeImpact->infectionsByRequestedTime;
