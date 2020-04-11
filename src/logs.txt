@@ -1,4 +1,6 @@
-1586536871		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/		 done in 0.074731111526489 seconds
-1586536881		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/xml		 done in 0.060401916503906 seconds
-1586536921		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		 done in 0.035146951675415 seconds
-1586537245		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/xml		 done in 0.065829992294312 seconds
+1586602477		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/json		404		21.764039993286 ms
+1586602484		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/json		200		6.6299438476562 ms
+1586602501		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/xml		200		29.892921447754 ms
+1586602517		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		5.4941177368164 ms
+1586602620		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		15.7790184021 ms
+1586602869		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		23.511171340942 ms
