@@ -9,12 +9,16 @@ require __DIR__ .'/vendor/autoload.php';
 $router = new \Bramus\Router\Router();
 $router->post('/api/v1/on-covid-19', function() {
   $json = file_get_contents('php://input');
-  $json_response = json_encode(covid19ImpactEstimator(json_decode($json)));
+  $json_response = json_encode(covid19ImpactEstimator(json_decode($json,true)));
   echo $json_response;
 });
 
 $router->get('/api/v1/on-covid-19/logs', function() {
-  
+    $content = file_get_contents("src/logs.txt");
+    echo $content;
+});
+
+$router->post('/api/v1/on-covid-19/logs', function() {
     $content = file_get_contents("src/logs.txt");
     echo $content;
 });
@@ -23,10 +27,12 @@ $router->post('/api/v1/on-covid-19/{returnType}', function($returnType) {
     $json = file_get_contents('php://input');
     if($returnType == 'xml'){
         $xml = new SimpleXMLElement('<?xml version="1.0"?><data></data>');
-        array_to_xml(covid19ImpactEstimator(json_decode($json)), $xml);
+        array_to_xml(covid19ImpactEstimator(json_decode($json,true)), $xml);
+        header('Content-Type: application/xml');
         echo $xml->asXML();
     }else if($returnType == 'json'){
-        $json_response = json_encode(covid19ImpactEstimator(json_decode($json)));
+        header('Content-Type: application/json');
+        $json_response = json_encode(covid19ImpactEstimator(json_decode($json,true)));
         echo $json_response;
     }else{
         header("HTTP/1.0 404 Not Found");
