@@ -23,8 +23,8 @@ function covid19ImpactEstimator($data)
   $availableBedSpace = floor((35 / 100) *  $totalHospitalBeds);
 
 
-  $impacthospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
-  $severeImpacthospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
+  $impacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $impact->severeCasesByRequestedTime) + 1;
+  $severeImpacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $severeImpact->severeCasesByRequestedTime) + 1;
 
   if($impacthospitalBedsByRequestedTime > 0){
     $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime ;
@@ -32,7 +32,6 @@ function covid19ImpactEstimator($data)
   }else{
     $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
     $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
- 
   }
   
   //Challenge 3
