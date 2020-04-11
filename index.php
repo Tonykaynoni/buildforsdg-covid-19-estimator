@@ -14,11 +14,13 @@ $router->post('/api/v1/on-covid-19', function() {
 });
 
 $router->get('/api/v1/on-covid-19/logs', function() {
+    header('Content-Type: text/plain');
     $content = file_get_contents("src/logs.txt");
     echo $content;
 });
 
 $router->post('/api/v1/on-covid-19/logs', function() {
+    header('Content-Type: text/plain');
     $content = file_get_contents("src/logs.txt");
     echo $content;
 });
