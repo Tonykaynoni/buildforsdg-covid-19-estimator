@@ -36,8 +36,8 @@ function covid19ImpactEstimator($data)
   }
   
   //Challenge 3
-  $impact->casesForICUByRequestedTime = (int) (5 / 100) * $impact->infectionsByRequestedTime;
-  $severeImpact->casesForICUByRequestedTime = (int) (5 / 100) * $severeImpact->infectionsByRequestedTime;
+  $impact->casesForICUByRequestedTime = (int) ((5 / 100) * $impact->infectionsByRequestedTime);
+  $severeImpact->casesForICUByRequestedTime = (int) ((5 / 100) * $severeImpact->infectionsByRequestedTime);
   
   $impact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $impact->infectionsByRequestedTime);
   $severeImpact->casesForVentilatorsByRequestedTime = floor((2 / 100) * $severeImpact->infectionsByRequestedTime);
