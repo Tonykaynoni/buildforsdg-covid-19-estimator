@@ -50,7 +50,7 @@ $myFile = "src/logs.txt";
 
     $fh = fopen($myFile, 'a') or die("can't open file");
     fwrite($fh, $_SERVER['REQUEST_METHOD']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t" . http_response_code() ."\t\t 0". floor((microtime(true) - $start) * 1000) . "ms");
-    fwrite($fh, "\r\n");
+    fwrite($fh, "\n");
     fclose($fh);
 
 
