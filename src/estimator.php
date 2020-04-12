@@ -112,7 +112,7 @@ function cvf_convert_object_to_array($data) {
 function writeToLog(){
         list($usec, $sec) = explode(" ", microtime());
         $fh = fopen(myFile, 'a') or die("can't open file");
-        fwrite($fh, $_SERVER['REQUEST_METHOD']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t" . http_response_code() ."\t\t".floor((((float)$usec + (float)$sec) - LUMEN_START) * 1000) . "ms");
+        fwrite($fh, $_SERVER['REQUEST_METHOD']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t0" . http_response_code() ."\t\t".floor((((float)$usec + (float)$sec) - LUMEN_START) * 1000) . "ms");
         fwrite($fh, "\n");
         fclose($fh);
 }
