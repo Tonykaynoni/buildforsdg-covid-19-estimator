@@ -1,0 +1,2 @@
+GET		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		4ms
+GET		/buildforsdg-covid-19-estimator/api/v1/on-covid-19/logs		200		2ms

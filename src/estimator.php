@@ -22,15 +22,15 @@ function covid19ImpactEstimator($data)
   $totalHospitalBeds = $info['totalHospitalBeds'];
   $availableBedSpace = floor((35 / 100) *  $totalHospitalBeds);
 
-  $impacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $impact->severeCasesByRequestedTime) + 1;
-  $severeImpacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $severeImpact->severeCasesByRequestedTime) + 1;
+  $impacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $impact->severeCasesByRequestedTime);
+  $severeImpacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
 
-  if($impacthospitalBedsByRequestedTime > 0 && $severeImpacthospitalBedsByRequestedTime > 0){
-    $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime ;
-    $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime;
+  if($impacthospitalBedsByRequestedTime < 0 && $severeImpacthospitalBedsByRequestedTime < 0){
+    $impact->hospitalBedsByRequestedTime = floor($availableBedSpace - $impact->severeCasesByRequestedTime + 1);
+    $severeImpact->hospitalBedsByRequestedTime = floor($availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1);
   }else{
-    $impact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $impact->severeCasesByRequestedTime + 1;
-    $severeImpact->hospitalBedsByRequestedTime = (int) $availableBedSpace - $severeImpact->severeCasesByRequestedTime + 1;
+    $impact->hospitalBedsByRequestedTime = floor($availableBedSpace - $impact->severeCasesByRequestedTime);
+    $severeImpact->hospitalBedsByRequestedTime = floor($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
   }
   
   //Challenge 3
@@ -107,4 +107,12 @@ function cvf_convert_object_to_array($data) {
   else {
       return $data;
   }
+}
+
+function writeToLog(){
+        list($usec, $sec) = explode(" ", microtime());
+        $fh = fopen(myFile, 'a') or die("can't open file");
+        fwrite($fh, $_SERVER['REQUEST_METHOD']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t0" . http_response_code() ."\t\t".floor((((float)$usec + (float)$sec) - LUMEN_START) * 1000) . "ms");
+        fwrite($fh, "\n");
+        fclose($fh);
 }
