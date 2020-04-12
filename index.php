@@ -14,13 +14,7 @@ $router->post('/api/v1/on-covid-19', function() {
 });
 
 $router->get('/api/v1/on-covid-19/logs', function() {
-    header('Content-Type: application/json');
-    $content = file_get_contents("src/logs.txt");
-    echo json_encode(strval($content));
-});
-
-$router->post('/api/v1/on-covid-19/logs', function() {
-    header('Content-Type: application/json');
+    header('Content-Type: text/plain');
     $content = file_get_contents("src/logs.txt");
     echo json_encode(strval($content));
 });
@@ -49,7 +43,7 @@ $router->run();
 $myFile = "src/logs.txt";
 
     $fh = fopen($myFile, 'a') or die("can't open file");
-    fwrite($fh, $_SERVER['REQUEST_TIME']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t" . http_response_code() ."\t\t".(microtime(true) - $start) * 1000 . " ms");
+    fwrite($fh, $_SERVER['REQUEST_METHOD']. "\t\t". $_SERVER['REQUEST_URI'] . "\t\t" . http_response_code() ."\t\t".(microtime(true) - $start) * 1000 . " ms");
     fwrite($fh, "\r\n");
     fclose($fh);
 
