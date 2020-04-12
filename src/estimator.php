@@ -29,8 +29,8 @@ function covid19ImpactEstimator($data)
     $impact->hospitalBedsByRequestedTime = round($availableBedSpace - $impact->severeCasesByRequestedTime);
     $severeImpact->hospitalBedsByRequestedTime = round($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
   }else{
-    $impact->hospitalBedsByRequestedTime = floor($availableBedSpace - $impact->severeCasesByRequestedTime);
-    $severeImpact->hospitalBedsByRequestedTime = floor($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
+    $impact->hospitalBedsByRequestedTime = round($availableBedSpace - $impact->severeCasesByRequestedTime);
+    $severeImpact->hospitalBedsByRequestedTime = round($availableBedSpace - $severeImpact->severeCasesByRequestedTime);
   }
   
   //Challenge 3
