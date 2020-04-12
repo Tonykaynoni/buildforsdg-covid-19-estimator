@@ -22,7 +22,6 @@ function covid19ImpactEstimator($data)
   $totalHospitalBeds = $info['totalHospitalBeds'];
   $availableBedSpace = floor((35 / 100) *  $totalHospitalBeds);
 
-
   $impacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $impact->severeCasesByRequestedTime) + 1;
   $severeImpacthospitalBedsByRequestedTime = (int) ($availableBedSpace - $severeImpact->severeCasesByRequestedTime) + 1;
 
